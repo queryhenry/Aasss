@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       - name: Install dependencies
         run: npm install
@@ -29,7 +29,6 @@ jobs:
         run: |
           rm -f capacitor.config.ts
           echo '{ "appId": "com.queryhenry.aasss", "appName": "Aasss", "webDir": "dist", "bundledWebRuntime": false }' > capacitor.config.json
-          cat capacitor.config.json
 
       - name: Add Android platform
         run: |
