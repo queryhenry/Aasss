@@ -18,23 +18,25 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Update Capacitor to latest
+        run: |
+          npm install @capacitor/core@latest @capacitor/cli@latest @capacitor/android@latest
+          npm dedupe
         
       - name: Build web app
         run: npm run build
 
-      - name: Install Capacitor
-        run: npm install @capacitor/core @capacitor/cli @capacitor/android
-
-      - name: Create Capacitor Config JSON
+      - name: Create Capacitor Config
         run: |
+          rm -rf android
           rm -f capacitor.config.ts
           echo '{ "appId": "com.queryhenry.aasss", "appName": "Aasss", "webDir": "dist", "bundledWebRuntime": false }' > capacitor.config.json
+          cat capacitor.config.json
 
-      - name: Add Android platform
+      - name: Add Android fresh
         run: |
-          if [ ! -d "android" ]; then
-            npx cap add android
-          fi
+          npx cap add android
           npx cap copy android
           npx cap sync android
 
@@ -42,6 +44,7 @@ jobs:
         run: |
           cd android
           chmod +x gradlew
+          ./gradlew clean
           ./gradlew assembleDebug --no-daemon
 
       - name: Upload APK
