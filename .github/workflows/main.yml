@@ -25,11 +25,11 @@ jobs:
       - name: Install Capacitor
         run: npm install @capacitor/core @capacitor/cli @capacitor/android
 
-      - name: Init Capacitor
+      - name: Create Capacitor Config JSON
         run: |
-          if [ ! -f "capacitor.config.ts" ] && [ ! -f "capacitor.config.json" ]; then
-            npx cap init Aasss com.queryhenry.aasss --web-dir=dist
-          fi
+          rm -f capacitor.config.ts
+          echo '{ "appId": "com.queryhenry.aasss", "appName": "Aasss", "webDir": "dist", "bundledWebRuntime": false }' > capacitor.config.json
+          cat capacitor.config.json
 
       - name: Add Android platform
         run: |
