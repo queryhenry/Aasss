@@ -1,0 +1,6 @@
+{
+  "name": "Pixel Art Nonogram Auto-Solver & Live Bot",
+  "description": "Auto-detect grid dimensions (10x10, 10x15, 15x15), solve pixel art logic nonograms automatically, and simulate notification-bar overlay auto-solving.",
+  "requestFramePermissions": ["display-capture"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
